@@ -28,4 +28,9 @@ psql -U postgres --gir
 
 psql -U postgres -d pagila  ---en baştan girdik
 
+#ALTER TABLE dimMovie ADD COLUMN rental_rate NUMERIC(5,2); --eksik tablo elemanlarını ekledim!!!
+#ALTER TABLE dimStore ADD COLUMN manager_staff INTEGER;
+#ALTER TABLE factSales RENAME COLUMN sales_amount TO amount;
+
+
 

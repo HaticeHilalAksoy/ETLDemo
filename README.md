@@ -33,4 +33,4 @@ psql -U postgres -d pagila  ---en baştan girdik
 #ALTER TABLE factSales RENAME COLUMN sales_amount TO amount;
 
 
-
+#SELECT column_name FROM information_schema.columns WHERE table_name = 'factsales';

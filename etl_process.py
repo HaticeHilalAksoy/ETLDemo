@@ -73,20 +73,26 @@ def load_dim_movie():
 
 def load_dim_store():
     query = """
-    INSERT INTO dimStore (store_key, store_id, manager_staff, address, district, city, country, postal_code)
+    INSERT INTO dimStore (store_key, store_id, address, address2, district, city, country, postal_code, 
+                      manager_first_name, manager_last_name, start_date, end_date)
     SELECT 
-           s.store_id AS store_key,
-           s.store_id,
-           s.manager_staff_id,
-           a.address,
-           a.district,
-           ci.city,
-           co.country,
-           a.postal_code
+        s.store_id AS store_key,  -- Mağaza ID'si (Primary Key)
+        s.store_id,
+        a.address,
+        a.address2,
+        a.district,
+        ci.city,
+        co.country,
+        a.postal_code,
+        st.first_name AS manager_first_name,
+        st.last_name AS manager_last_name,
+        NOW() AS start_date,
+        NOW() AS end_date
     FROM store s
     JOIN address a  ON s.address_id = a.address_id
     JOIN city ci    ON a.city_id = ci.city_id
-    JOIN country co ON ci.country_id = co.country_id;
+    JOIN country co ON ci.country_id = co.country_id
+    JOIN staff st   ON s.manager_staff_id = st.staff_id;
     """
     execute_query(query)
 
